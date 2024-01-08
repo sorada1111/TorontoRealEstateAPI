@@ -1,0 +1,33 @@
+﻿@model Agent
+@{
+    var currentUsername = Context.Session.GetString("Username");
+    var currentUserId = Context.Session.GetString("UserId");
+    var userRole = Context.Session.GetString("UserRole");
+    ViewData["Title"] = "Add Address";
+    var propertyId = ViewBag.PropertyId as string;
+}
+@if (currentUserId != null && currentUsername != null)
+{
+    <div class="container my-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                Agent Details
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@Model.AgentName</h5>
+                <div class="card-text">
+                    <p><strong>Company:</strong> @Model.AgentCompanyName</p>
+                    <p><strong>Phone:</strong> @Model.AgentPhone</p>
+                </div>
+                <a href="@Url.Action("Index", "Agent")" class="btn btn-secondary mt-3">Back to List</a>
+            </div>
+        </div>
+    </div>
+
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        You must be logged in to view agent details.
+    </div>
+}

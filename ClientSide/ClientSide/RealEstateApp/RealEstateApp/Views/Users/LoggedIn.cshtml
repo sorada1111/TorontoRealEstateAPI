@@ -1,0 +1,18 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "LoggedIn";
+    var currentUsername = Context.Session.GetString("Username");
+    var currentUserId = Context.Session.GetString("UserId");
+    var userRole = Context.Session.GetString("UserRole");
+
+}
+
+@if (currentUserId != null && currentUsername != null)
+{
+    <div class="user-info">
+        <span class="username">Hello, @currentUsername</span>
+        <span class="user-id">(@currentUserId)</span>
+    </div>
+}

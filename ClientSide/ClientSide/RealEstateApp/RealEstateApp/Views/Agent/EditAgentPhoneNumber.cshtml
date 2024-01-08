@@ -1,0 +1,43 @@
+﻿@model AgentPhoneNumberUpdateViewModel
+@{
+    var currentUsername = Context.Session.GetString("Username");
+    var currentUserId = Context.Session.GetString("UserId");
+    var userRole = Context.Session.GetString("UserRole");
+    ViewData["Title"] = "Edit Agent Phone Number";
+    var propertyId = ViewBag.PropertyId as string;
+    var agentId = Model.AgentId;
+}
+@if (currentUserId != null && currentUsername != null)
+{
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">Edit Phone Number</h2>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="EditAgentPhoneNumber" method="post">
+                            <input type="hidden" name="PropertyId" value="@propertyId" />
+                            <input type="hidden" name="AgentId" value="@agentId" />
+
+                            <div class="form-group">
+                                <label asp-for="AgentPhone">New Phone Number</label>
+                                <input asp-for="AgentPhone" class="form-control" />
+                                <span asp-validation-for="AgentPhone" class="text-danger"></span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        You must be logged in to edit an agent phone number.
+    </div>
+}

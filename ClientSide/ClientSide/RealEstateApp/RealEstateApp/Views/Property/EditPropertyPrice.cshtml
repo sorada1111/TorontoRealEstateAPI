@@ -1,0 +1,40 @@
+﻿@model RealEstateApp.Models.PropertyPriceUpdateViewModel
+@{
+    ViewBag.Title = "Edit Property price";
+    var currentUsername = Context.Session.GetString("Username");
+    var currentUserId = Context.Session.GetString("UserId");
+}
+@if (currentUserId != null && currentUsername != null)
+{
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">Edit Property Price</h2>
+                    </div>
+                    <div class="card-body">
+                        @if (currentUserId != null && currentUsername != null)
+                        {
+                            <form asp-action="EditPropertyPrice" method="post">
+                                <input type="hidden" asp-for="PropertyId" />
+
+                                <div class="form-group">
+                                    <label asp-for="Price">New Price</label>
+                                    <input asp-for="Price" class="form-control" />
+                                    <span asp-validation-for="Price" class="text-danger"></span>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <p class="text-center">You must be logged in to edit the price.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

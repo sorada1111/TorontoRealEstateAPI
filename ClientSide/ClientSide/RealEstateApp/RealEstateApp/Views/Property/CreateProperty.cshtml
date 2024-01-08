@@ -1,0 +1,198 @@
+﻿@model RealEstateApp.Models.Property
+@{
+    ViewBag.Title = "Create Property";
+    var currentUsername = Context.Session.GetString("Username");
+    var currentUserId = Context.Session.GetString("UserId");
+}
+
+@if (currentUserId != null && currentUsername != null)
+{
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">Create Property</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="propertyForm">
+                            <div class="form-group">
+                                <label asp-for="PropertyName">Property Name:</label>
+                                <input asp-for="PropertyName" class="form-control" />
+                                <span asp-validation-for="PropertyName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="PropertyDesc">Property Description:</label>
+                                <textarea asp-for="PropertyDesc" class="form-control"></textarea>
+                                <span asp-validation-for="PropertyDesc" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="PropertyTax">Property Tax:</label>
+                                <input asp-for="PropertyTax" class="form-control" type="number" step="0.01" />
+                                <span asp-validation-for="PropertyTax" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Price">Price:</label>
+                                <input asp-for="Price" class="form-control" type="number" step="0.01" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="PropertyType">Property Type:</label>
+                                <select asp-for="PropertyType" class="form-control">
+                                    <option value="">-- Select Property Type --</option>
+                                    <option value="Townhouse">Townhouse</option>
+                                    <option value="SemiDetached">Semi-detached house</option>
+                                    <option value="Detached">Detached house</option>
+                                    <option value="Condo">Condo</option>
+                                    <option value="Mansion">Mansion</option>
+                                </select>
+                                <span asp-validation-for="PropertyType" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Status">Status:</label>
+                                <select asp-for="Status" class="form-control">
+                                    <option value="Sold">Sold</option>
+                                    <option value="Available">Available</option>
+                                </select>
+                                <span asp-validation-for="Status" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Property Images:</label>
+                                <div id="propertyImageInputs">
+                                    <div class="input-group mb-2">
+                                        <input type="file" class="form-control" name="PropertyImages[0]" id="propertyImage0" multiple>
+                                        <button type="button" class="btn btn-outline-success" id="addPropertyImage">+</button>
+                                        <button type="button" class="btn btn-outline-danger" onclick="removePropertyImage(this)">-</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" id="submitProperty" class="btn btn-primary">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        document.getElementById('propertyForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+
+            fetch('@Url.Action("CreateProperty", "Property")', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        var propertyId = data.propertyId;
+                        uploadImages(propertyId);
+                    } else {
+                        console.error('Error creating property:', data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        });
+
+        function uploadImages(propertyId) {
+            var imageFormData = new FormData();
+            var imageInputs = document.querySelectorAll('[id^="propertyImage"]');
+
+            imageInputs.forEach((input) => {
+                // Check if the input has files
+                if (input.files && input.files.length > 0) {
+                    Array.from(input.files).forEach(file => {
+                        imageFormData.append('PropertyImages', file);
+                    });
+                }
+            });
+
+            fetch(`/Property/UploadImages?propertyId=${propertyId}`, {
+                method: 'POST',
+                body: imageFormData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Images uploaded successfully:', data);
+                    window.location.href = '/Property/Index';
+
+                })
+                .catch(error => {
+                    console.error('Error uploading images:', error);             
+                });
+        }
+
+
+        // Function to add a new file input field
+        function addPropertyImage() {
+            var inputGroup = document.createElement("div");
+            inputGroup.className = "input-group mb-2";
+
+            var inputFile = document.createElement("input");
+            inputFile.type = "file";
+            inputFile.className = "form-control";
+            var inputCount = document.querySelectorAll('[id^="propertyImage"]').length;
+            inputFile.name = "PropertyImages[" + inputCount + "]";
+            inputFile.id = "propertyImage" + inputCount;
+            inputFile.multiple = true;
+
+            var addButton = document.createElement("button");
+            addButton.type = "button";
+            addButton.className = "btn btn-outline-success";
+            addButton.textContent = "+";
+            addButton.addEventListener("click", addPropertyImage);
+
+            var removeButton = document.createElement("button");
+            removeButton.type = "button";
+            removeButton.className = "btn btn-outline-danger";
+            removeButton.textContent = "-";
+            removeButton.addEventListener("click", function () {
+                removePropertyImage(this);
+            });
+
+            inputGroup.appendChild(inputFile);
+            inputGroup.appendChild(addButton);
+            inputGroup.appendChild(removeButton);
+
+            document.getElementById("propertyImageInputs").appendChild(inputGroup);
+        }
+
+        // Function to remove a file input field
+        function removePropertyImage(button) {
+            var inputGroup = button.parentElement;
+            var parent = inputGroup.parentElement;
+
+            if (parent.childElementCount > 1) {
+                inputGroup.remove();
+
+                // Optional: Re-index the remaining inputs
+                const inputs = document.querySelectorAll('[id^="propertyImage"]');
+                inputs.forEach((input, index) => {
+                    input.name = input.name.replace(/\[\d+\]/, '[' + index + ']');
+                });
+            } else {
+                alert("You must have at least one Property Image.");
+            }
+        }
+
+        // Attach the addPropertyImage function to the "+" button click event
+        document.getElementById("addPropertyImage").addEventListener("click", addPropertyImage);
+
+
+        </script>
+}

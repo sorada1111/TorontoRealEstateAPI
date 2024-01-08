@@ -1,0 +1,58 @@
+﻿<ul class="navbar-nav navbar-right">
+    @if (Context.Session.GetString("Username") == null)
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Login">Login</a>
+        </li>
+    }
+    else if (Context.Session.GetString("UserRole") == "Admin")
+    {
+         <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Property</a>
+              <div class="dropdown-menu" data-bs-popper="static">
+                    <a class="dropdown-item" asp-area="" asp-controller="Property" asp-action="Index">Property List</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Property" asp-action="CreateProperty">Create Property</a>
+              </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Address" asp-action="Index">Address</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Agent" asp-action="Index">Agent</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Feature" asp-action="Index">Feature</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Index">User List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Logout">Logout</a>
+        </li>
+    }
+    else if (Context.Session.GetString("UserRole") == "Agent")
+    {
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Property</a>
+            <div class="dropdown-menu" data-bs-popper="static">
+                <a class="dropdown-item" asp-area="" asp-controller="Property" asp-action="Index">Property List</a>
+                <a class="dropdown-item" asp-area="" asp-controller="Property" asp-action="CreateProperty">Create Property</a>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Logout">Logout</a>
+        </li>
+    }
+    else if (Context.Session.GetString("UserRole") == "User")
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Property" asp-action="Index">Property List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Logout">Logout</a>
+        </li>
+    }
+</ul>

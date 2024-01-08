@@ -1,0 +1,39 @@
+﻿@model AddresspostalCodeUpdateViewModel
+@{
+    var currentUsername = Context.Session.GetString("Username");
+    var currentUserId = Context.Session.GetString("UserId");
+    var userRole = Context.Session.GetString("UserRole");
+    ViewData["Title"] = "Edit Address";
+    var propertyId = ViewBag.PropertyId as string;
+}
+@if (currentUserId != null && currentUsername != null)
+{
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">Edit Postal Code</h2>
+                    </div>
+                    <div class="card-body">                      
+                            <form asp-action="EditAddressPostalCode" method="post">
+                            <input type="hidden" name="PropertyId" value="@propertyId" />
+
+                            <div class="form-group">
+                                <label asp-for="PostalCode">New Postal Code</label>
+                                <input asp-for="PostalCode" class="form-control" />
+                                <span asp-validation-for="PostalCode" class="text-danger"></span>
+                            </div>
+
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </form>                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <p>You must be logged in to edit an postal code.</p>
+}

@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "dgSpecHash": "85iKUXsX3DqzFO0eQd+v6+BSXjQkA25FrmZfpq5KhAzP5peNiF4/ATxac/fvnxI7FNx+s12I4OtKMd27QCEFuA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\sorad\\Desktop\\Centennial College Fall 2023\\COMP306-API\\Group Project\\Implementation\\Implementation\\RealEstateLibrary\\RealEstateLibrary\\RealEstateLibrary.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sorad\\.nuget\\packages\\amazon.extensions.configuration.systemsmanager\\6.0.0\\amazon.extensions.configuration.systemsmanager.6.0.0.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\awssdk.appconfigdata\\3.7.0.23\\awssdk.appconfigdata.3.7.0.23.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\awssdk.core\\3.7.300.3\\awssdk.core.3.7.300.3.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\awssdk.dynamodbv2\\3.7.300.3\\awssdk.dynamodbv2.3.7.300.3.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\awssdk.extensions.netcore.setup\\3.7.1\\awssdk.extensions.netcore.setup.3.7.1.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\awssdk.s3\\3.7.300.3\\awssdk.s3.3.7.300.3.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\awssdk.simplesystemsmanagement\\3.7.300.3\\awssdk.simplesystemsmanagement.3.7.300.3.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\8.0.0\\microsoft.extensions.configuration.fileextensions.8.0.0.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\microsoft.extensions.configuration.json\\8.0.0\\microsoft.extensions.configuration.json.8.0.0.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.0.0\\microsoft.extensions.dependencyinjection.abstractions.2.0.0.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\8.0.0\\microsoft.extensions.fileproviders.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\8.0.0\\microsoft.extensions.fileproviders.physical.8.0.0.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\8.0.0\\microsoft.extensions.filesystemglobbing.8.0.0.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.0\\system.configuration.configurationmanager.8.0.0.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
+    "C:\\Users\\sorad\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

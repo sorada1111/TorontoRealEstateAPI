@@ -1,0 +1,75 @@
+﻿@model RealEstateApp.Models.Property
+@{
+    ViewBag.Title = "Edit Property";
+    var currentUsername = Context.Session.GetString("Username");
+    var currentUserId = Context.Session.GetString("UserId");
+}
+
+@if (currentUserId != null && currentUsername != null)
+{
+    <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0">Edit Property</h2>
+                </div>
+                <div class="card-body">
+                        <form asp-action="EditProperty" method="post">
+                        <input type="hidden" asp-for="PropertyId" /> <!-- Hidden field for PropertyId -->
+
+                        <div class="form-group">
+                            <label asp-for="PropertyName">Property Name:</label>
+                            <input asp-for="PropertyName" class="form-control" />
+                            <span asp-validation-for="PropertyName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="PropertyDesc">Property Description:</label>
+                            <textarea asp-for="PropertyDesc" class="form-control"></textarea>
+                            <span asp-validation-for="PropertyDesc" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="PropertyTax">Property Tax:</label>
+                            <input asp-for="PropertyTax" class="form-control" type="number" step="0.01" />
+                            <span asp-validation-for="PropertyTax" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Price">Price:</label>
+                            <input asp-for="Price" class="form-control" type="number" step="0.01" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+
+                        
+                            <div class="form-group">
+                                <label asp-for="PropertyType">Property Type:</label>
+                                <select asp-for="PropertyType" class="form-control">
+                                    <option value="">-- Select Property Type --</option>
+                                    <option value="Townhouse">Townhouse</option>
+                                    <option value="SemiDetached">Semi-detached house</option>
+                                    <option value="Detached">Detached house</option>
+                                    <option value="Condo">Condo</option>
+                                    <option value="Mansion">Mansion</option>
+                                </select>
+                                <span asp-validation-for="PropertyType" class="text-danger"></span>
+                            </div>
+
+                        <div class="form-group">
+                            <label asp-for="Status">Status:</label>
+                            <select asp-for="Status" class="form-control">
+                                <option value="Sold">Sold</option>
+                                <option value="Available">Available</option>
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}

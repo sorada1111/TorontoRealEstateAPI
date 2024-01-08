@@ -1,0 +1,51 @@
+﻿@model Address
+@{
+    var currentUsername = Context.Session.GetString("Username");
+    var currentUserId = Context.Session.GetString("UserId");
+    var userRole = Context.Session.GetString("UserRole");
+    ViewData["Title"] = "Add Address";
+    var propertyId = ViewBag.PropertyId as string;
+}
+@if (currentUserId != null && currentUsername != null)
+{
+    <h2>@ViewData["Title"]</h2>
+    <form asp-action="AddAddress" method="post">
+        <input type="hidden" name="propertyId" value="@propertyId" />
+
+        <div class="form-group">
+            <label asp-for="StreetAddress">Street Address</label>
+            <input asp-for="StreetAddress" class="form-control" />
+            <span asp-validation-for="StreetAddress" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="City">City</label>
+            <input asp-for="City" class="form-control" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="State">State</label>
+            <input asp-for="State" class="form-control" />
+            <span asp-validation-for="State" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PostalCode">Postal Code</label>
+            <input asp-for="PostalCode" class="form-control" />
+            <span asp-validation-for="PostalCode" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Country">Country</label>
+            <input asp-for="Country" class="form-control" />
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Address</button>
+    </form>
+}
+else
+{
+    <p>You must be logged in to add an address.</p>
+}

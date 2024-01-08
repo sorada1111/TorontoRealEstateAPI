@@ -1,0 +1,39 @@
+﻿@model Agent
+@{
+    var currentUsername = Context.Session.GetString("Username");
+    var currentUserId = Context.Session.GetString("UserId");
+    var userRole = Context.Session.GetString("UserRole");
+    ViewData["Title"] = "Add Address";
+    var propertyId = ViewBag.PropertyId as string;
+}
+@if (currentUserId != null && currentUsername != null)
+{
+    <h2>@ViewData["Title"]</h2>
+    <form asp-action="AddAgent" method="post">
+        <input type="hidden" name="propertyId" value="@propertyId" />
+
+        <div class="form-group">
+            <label asp-for="AgentName">Agent Name</label>
+            <input asp-for="AgentName" class="form-control" />
+            <span asp-validation-for="AgentName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="AgentCompanyName">Agent Company Name</label>
+            <input asp-for="AgentCompanyName" class="form-control" />
+            <span asp-validation-for="AgentCompanyName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="AgentPhone">AgentPhone</label>
+            <input asp-for="AgentPhone" class="form-control" />
+            <span asp-validation-for="AgentPhone" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Agent</button>
+    </form>
+}
+else
+{
+    <p>You must be logged in to add an agent.</p>
+}

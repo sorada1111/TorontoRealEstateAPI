@@ -1,0 +1,145 @@
+﻿@model RealEstateApp.Models.Property
+
+@{
+    ViewData["Title"] = "Property Details";
+    var mainImageUrl = Model.PropertyImageUrls.FirstOrDefault();
+    var thumbnailImageUrls = Model.PropertyImageUrls.Skip(1).ToList();
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4" style="font-size: 2.5rem; font-weight: 600;">@Model.PropertyName</h2>
+
+    <!-- Image Card -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <!-- Main Image -->
+            @if (mainImageUrl != null)
+            {
+                <div class="row mb-4">
+                    <div class="col-md-8 col-lg-6">
+                        <img src="@mainImageUrl" class="img-fluid rounded" alt="Main Property Image" style="width: 100%; height: auto;" />
+                    </div>
+                    <!-- Thumbnails -->
+                    <div class="col-md-4 col-lg-6">
+                        <div class="row">
+                            @foreach (var imageUrl in thumbnailImageUrls)
+                            {
+                                <div class="col-6 col-sm-4 mb-3">
+                                    <img src="@imageUrl" class="img-fluid rounded" alt="Thumbnail Property Image" style="width: 100%; height: auto;" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <!--End Image Card-->
+
+    <!-- Row for Price and Address Card and agent Card -->
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text"><strong>Price:</strong> @Model.Price</p>
+                    <p class="card-text"><strong>Address:</strong></p>
+                    <p class="card-text">@Model.PropertyAddresses?.StreetAddress, @Model.PropertyAddresses?.City, @Model.PropertyAddresses?.State @Model.PropertyAddresses?.Country, @Model.PropertyAddresses?.PostalCode</p>
+                </div>
+                <!-- Card Footer for Property Status -->
+                <div class="card-footer @(Model.Status == "Sold" ? "footer-sold" : "footer-available")">
+                    Status: @Model.Status
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Agent Card -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Agents</h3>
+                    @if (Model.Agents != null)
+                    {
+                       
+                            <div class="mb-3">
+                                <p class="card-text">
+                                    <strong>
+                                        <i class="fas fa-user-tie" style="margin-right: 5px;"></i>
+                                    <span style="font-size: larger;">@Model.Agents.AgentName</span>
+                                    </strong>
+                                </p>
+
+                                <p class="card-text">
+                                <strong><i class="fas fa-building" style="margin-right: 5px;"> </i></strong> @Model.Agents.AgentCompanyName
+                            </p>
+                                <p class="card-text">
+                                <strong><i class="fas fa-phone-alt" style="margin-right: 5px;"></i></strong> @Model.Agents.AgentPhone
+                                </p>
+                            </div>
+                        
+                    }
+                    else
+                    {
+                        <p class="card-text">No agents listed.</p>
+                    }
+                    <!-- Additional content here -->
+                </div>
+            </div>
+        </div>
+        <!-- End Agent Card -->
+    </div>
+    <!-- End Row for Price and Address Card and agent Card -->
+
+     <!-- Property Details Card -->
+    <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="card-title">Property Summary</h2>
+            <p class="card-text">@Model.PropertyDesc</p>            
+            <div class="row">
+                <div class="col">
+                    <h3>Property Tax</h3><br>
+                    @Model.PropertyTax / year
+                </div>              
+                    <div class="col">
+                        <h3>Size</h3><br>
+                    @Model.Features?.Size /sqft
+                    </div>
+
+                    <div class="col">
+                        <h3>No. of Rooms</h3><br>
+                    @Model.Features?.Rooms
+                    </div>
+
+                    <div class="col">
+                        <h3>No. of Bathrooms</h3><br>
+                    @Model.Features?.Bathrooms
+                    </div>
+
+            </div>
+            <div class="row">              
+                    <div class="col">
+                        <h3>Parking</h3>
+                    <p>@(Model.Features?.HasParking == true ? "Yes" : "No")</p>
+                    </div>
+                      <div class="col">
+                        <h3>WalkScore</h3><br>
+                    @(Model.Features?.WalkScore / 100 ?? 0)
+                    </div>
+
+                    <div class="col">
+                        <h3>TransitScore</h3><br>
+                    @(Model.Features?.TransitScore / 100 ?? 0)                    
+                    </div>
+
+                    <div class="col">
+                        <h3>BikeScore</h3><br>
+                    @(Model.Features?.BikeScore / 100 ?? 0)
+                    </div>
+           </div>
+            <!-- Features Table -->
+        </div>
+    </div>
+    <!-- End Property Details Card -->
+
+
+</div>

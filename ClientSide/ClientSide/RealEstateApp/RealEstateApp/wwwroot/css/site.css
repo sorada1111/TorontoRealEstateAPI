@@ -1,0 +1,172 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.card-img-top {
+    object-fit: contain;
+    max-height: 300px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.btn.rounded {
+    border-radius: 15px !important;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.space {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: calc(1.475rem + 2.7vw);
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+
+.user-info {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.username {
+    color: #57b2e8; /* A lighter blue that works well on dark backgrounds */
+    font-weight: bold;
+    font-weight: 600;
+    font-size: x-large;
+}
+
+.user-id {
+    font-size: 0.9rem;
+    color: #a1a7b3; /* Light gray for visibility against dark background */
+    font-style: italic;
+    font-size: large;
+}
+
+.carousel-image {
+    max-height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-inner {
+    overflow: hidden; /* Ensures the image is clipped to the container size */
+}
+
+
+.thumbnail-container {
+    position: relative;
+    overflow: hidden;
+}
+
+    .thumbnail-container img {
+        width: 100%;
+        height: auto;
+    }
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay background color and opacity */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+    .overlay a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+.thumbnail-container:hover .overlay {
+    opacity: 1;
+}
+
+.footer-sold {
+    background-color: #dc3545; /* Red for sold */
+    color: white;
+}
+
+.footer-available {
+    background-color: #28a745; /* Green for available */
+    color: white;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    gap: 10px;
+    background-color: #f9f9f9; 
+    margin-bottom: 30px; 
+    margin-top: 50px;
+}
+
+    .search-container form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .search-container input[type="text"],
+    .search-container select,
+    .search-container input[type="number"],
+    .search-btn,
+    .filters-btn,
+    .save-search-btn {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+.search-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.filters-btn {
+    background-color: #f0f0f0;
+}
+
+.save-search-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.card-action-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+    gap: 10px; 
+    padding: 5px; 
+}
+
+    .card-action-row .btn {
+        margin: 2px; 
+        text-align: center;
+    }
+
+

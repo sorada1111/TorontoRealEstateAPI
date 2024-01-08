@@ -1,0 +1,78 @@
+﻿@model Feature
+@{
+    var currentUsername = Context.Session.GetString("Username");
+    var currentUserId = Context.Session.GetString("UserId");
+    var userRole = Context.Session.GetString("UserRole");
+    ViewData["Title"] = "Edit Features";
+    var propertyId = ViewBag.PropertyId as string;
+}
+@if (currentUserId != null && currentUsername != null)
+{
+    <h2>@ViewData["Title"]</h2>
+    <form asp-action="EditFeatures" method="post">
+        <input type="hidden" name="propertyId" value="@propertyId" />
+
+        <div class="form-group">
+            <label asp-for="Size">Property Size</label>
+            <input asp-for="Size" class="form-control" />
+            <span asp-validation-for="Size" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Rooms">Property Rooms</label>
+            <input asp-for="Rooms" class="form-control" />
+            <span asp-validation-for="Rooms" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Bathrooms">Property Bathrooms</label>
+            <input asp-for="Bathrooms" class="form-control" />
+            <span asp-validation-for="Bathrooms" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="HasParking">Property HasParking</label>
+
+            <div>
+                <input asp-for="HasParking" type="radio" value="true" id="HasParkingTrue" />
+                <label for="HasParkingTrue">Yes</label>
+            </div>
+
+            <div>
+                <input asp-for="HasParking" type="radio" value="false" id="HasParkingFalse" />
+                <label for="HasParkingFalse">No</label>
+            </div>
+
+            <span asp-validation-for="HasParking" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="WalkScore">Property WalkScore</label>
+            <input asp-for="WalkScore" class="form-control" />
+            <span asp-validation-for="WalkScore" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="TransitScore">Property TransitScore</label>
+            <input asp-for="TransitScore" class="form-control" />
+            <span asp-validation-for="TransitScore" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="BikeScore">Property BikeScore</label>
+            <input asp-for="BikeScore" class="form-control" />
+            <span asp-validation-for="BikeScore" class="text-danger"></span>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        You must be logged in to edit features.
+    </div>
+}
